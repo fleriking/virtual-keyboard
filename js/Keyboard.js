@@ -1,0 +1,149 @@
+import { Key } from "./Key.js";
+import { language } from "./language.js";
+export class Keyboard {
+  constructor(lang) {
+    this.shift = false;
+    switch (lang) {
+      case 'en':
+        this.language = language.languageEng;
+        break;
+    }
+    this.keyBoardElement = document.createElement('div');
+    this.keyBoardElement.className = 'keyboard';
+
+    this.createKeyboard();
+
+
+
+  }
+
+  createKeyButton(key, classKey) {
+    const keyElement = document.createElement('div');
+    keyElement.textContent = this.shift ? key.key.keyUpper : key.key.keyLower;
+    keyElement.className = classKey;
+    return keyElement;
+  }
+
+  createRowKeys(startId, endId, beforeKeys, afterKeys) {
+    const rowKeys = document.createElement('div');
+    rowKeys.className = 'keyboard__row';
+    beforeKeys.forEach(element => {
+      rowKeys.append(this.createKeyButton(element.key, element.classKey));
+    })
+
+    for (let i = startId; i < endId + 1; i++) {
+      rowKeys.append(this.createKeyButton(this.language[i], 'keyboard__standart-button'));
+    }
+
+    afterKeys.forEach(element => {
+      rowKeys.append(this.createKeyButton(element.key, element.classKey));
+    })
+    return rowKeys;
+  }
+  createKeyboard() {
+    this.keyBoardElement.innerHTML = '';
+    this.keyBoardElement.append(this.createRowKeys(0, 12, [],
+      [{
+        key: new Key('Backspace'),
+        classKey: 'keyboard__large-button',
+      },]
+    ));
+
+    this.keyBoardElement.append(this.createRowKeys(13, 24,
+      [
+        {
+          key: new Key('Tab'),
+          classKey: 'keyboard__meadle-button',
+        },
+      ],
+      [
+        {
+          key: new Key('Delete'),
+          classKey: 'keyboard__meadle-button',
+        },
+      ]
+    ));
+
+    this.keyBoardElement.append(this.createRowKeys(25, 36,
+      [
+        {
+          key: new Key('CapsLock'),
+          classKey: 'keyboard__meadle-button',
+        },
+      ],
+      [
+        {
+          key: new Key('Enter'),
+          classKey: 'keyboard__large-button',
+        },
+      ]
+    ));
+
+    this.keyBoardElement.append(this.createRowKeys(37, 46,
+      [
+        {
+          key: new Key('Shift'),
+          classKey: 'keyboard__large-button',
+        },
+      ],
+      [
+        {
+          key: new Key('ArrowUp'),
+          classKey: 'keyboard__large-button',
+        },
+        {
+          key: new Key('Shift'),
+          classKey: 'keyboard__large-button',
+        },
+      ]
+    ));
+
+    this.keyBoardElement.append(this.createRowKeys(47, 46,
+      [
+        {
+          key: new Key('Control'),
+          classKey: 'keyboard__meadle-button',
+        },
+        {
+          key: new Key('OS'),
+          classKey: 'keyboard__meadle-button',
+        },
+        {
+          key: new Key('Alt'),
+          classKey: 'keyboard__meadle-button',
+        },
+        {
+          key: new Key(' '),
+          classKey: 'keyboard__extra-large-button',
+        },
+      ],
+      [
+        {
+          key: new Key('Alt'),
+          classKey: 'keyboard__meadle-button',
+        },
+        {
+          key: new Key('Ctrl'),
+          classKey: 'keyboard__meadle-button',
+        },
+        {
+          key: new Key('ArrowLeft'),
+          classKey: 'keyboard__large-button',
+        },
+        {
+          key: new Key('ArrowDown'),
+          classKey: 'keyboard__large-button',
+        },
+        {
+          key: new Key('ArrowRight'),
+          classKey: 'keyboard__large-button',
+        },
+      ]
+    ));
+  }
+  changeShift(){
+    this.shift = this.shift ? false : true;
+    this.createKeyboard();
+  }
+
+}
