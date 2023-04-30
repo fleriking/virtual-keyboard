@@ -2,7 +2,8 @@ import { Key } from "./Key.js";
 import { language } from "./language.js";
 export class Keyboard {
   constructor(lang) {
-    this.shift = false;
+    this.upperCase = false;
+    this.capsLock = false;
     switch (lang) {
       case 'en':
         this.language = language.languageEng;
@@ -19,8 +20,9 @@ export class Keyboard {
 
   createKeyButton(key, classKey) {
     const keyElement = document.createElement('div');
-    keyElement.textContent = this.shift ? key.key.keyUpper : key.key.keyLower;
+    keyElement.textContent = this.upperCase ? key.key.keyUpper : key.key.keyLower;
     keyElement.className = classKey;
+    keyElement.dataset.key = keyElement.textContent;
     return keyElement;
   }
 
@@ -123,7 +125,7 @@ export class Keyboard {
           classKey: 'keyboard__meadle-button',
         },
         {
-          key: new Key('Ctrl'),
+          key: new Key('Control'),
           classKey: 'keyboard__meadle-button',
         },
         {
@@ -141,8 +143,19 @@ export class Keyboard {
       ]
     ));
   }
-  changeShift(){
-    this.shift = this.shift ? false : true;
+  changeShift() {
+    this.upperCase = this.upperCase ? false : true;
+    // console.log(this.upperCase);
+    this.createKeyboard();
+  }
+  toUpper() {
+    this.upperCase = true;
+    this.capsLock = true;
+    this.createKeyboard();
+  }
+  toLower() {
+    this.upperCase = false;
+    this.capsLock = false;
     this.createKeyboard();
   }
 
