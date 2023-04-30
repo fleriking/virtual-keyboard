@@ -1,0 +1,16 @@
+{
+  "name": "virtual-keyboard",
+  "version": "1.0.0",
+  "description": "",
+  "main": "js/main.js",
+  "scripts": {
+    "style": "sass --watch scss/style.scss scss/style.css",
+    "eslint": "eslint . --fix",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^8.39.0"
+  }
+}
