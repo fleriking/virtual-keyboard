@@ -1,0 +1,74 @@
+.keyboard__row {
+  display: flex;
+  width: 900px;
+  justify-content: space-between;
+  height: 60px;
+  align-items: center;
+}
+
+.keyboard__row > * {
+  box-shadow: 2px 3px 3px rgb(85, 84, 84);
+  cursor: pointer;
+}
+
+.keyboard__standart-button {
+  margin: 5px;
+  background-color: rgb(97, 97, 87);
+  color: white;
+  width: 40px;
+  text-align: center;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+}
+
+.keyboard__large-button {
+  margin: 5px;
+  background-color: rgb(48, 48, 43);
+  color: white;
+  width: 80px;
+  text-align: center;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+}
+
+.keyboard__meadle-button {
+  margin: 5px;
+  background-color: rgb(59, 59, 52);
+  color: white;
+  width: 60px;
+  text-align: center;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+}
+
+.keyboard__extra-large-button {
+  margin: 10px;
+  background-color: black;
+  width: 50px;
+  align-self: center;
+  height: 40px;
+  flex-grow: 2;
+  border-radius: 4px;
+}
+
+.keyboard__active {
+  background-color: rgb(71, 46, 214);
+  box-shadow: none;
+  transition: 0.2s all;
+}
+
+.text-arae {
+  width: 900px;
+  height: 100px;
+}
+
+/*# sourceMappingURL=style.css.map */
