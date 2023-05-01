@@ -4,9 +4,13 @@ export class Keyboard {
   constructor(lang) {
     this.upperCase = false;
     this.capsLock = false;
+    this.lang = lang;
     switch (lang) {
       case 'en':
         this.language = language.languageEng;
+        break;
+      case 'ru':
+        this.language = language.languageRu;
         break;
     }
     this.keyBoardElement = document.createElement('div');
@@ -34,7 +38,9 @@ export class Keyboard {
     })
 
     for (let i = startId; i < endId + 1; i++) {
-      rowKeys.append(this.createKeyButton(this.language[i], 'keyboard__standart-button'));
+      const keyButton = this.createKeyButton(this.language[i], 'keyboard__standart-button');
+      // keyButton.dataset.key = 'key' + i;
+      rowKeys.append(keyButton);
     }
 
     afterKeys.forEach(element => {
@@ -157,6 +163,18 @@ export class Keyboard {
     this.upperCase = false;
     this.capsLock = false;
     this.createKeyboard();
+  }
+  switchLang(){
+    console.log('switch');
+    if (this.language === language.languageEng) {
+      this.language = language.languageRu;
+      this.lang = 'ru';
+    } else {
+      this.language = language.languageEng;
+      this.lang = 'en'
+    }
+    this.createKeyboard();
+    return this.lang;
   }
 
 }
